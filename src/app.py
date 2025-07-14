@@ -8,7 +8,9 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User
+from database.db import db
+import routes.user as api_user
+
 #from models import Person
 
 app = Flask(__name__)
@@ -27,6 +29,9 @@ CORS(app)
 setup_admin(app)
 
 # Handle/serialize errors like a JSON object
+app.register_blueprint(api_user.api,url_prefix="/api/user")
+
+
 @app.errorhandler(APIException)
 def handle_invalid_usage(error):
     return jsonify(error.to_dict()), error.status_code
@@ -35,7 +40,7 @@ def handle_invalid_usage(error):
 @app.route('/')
 def sitemap():
     return generate_sitemap(app)
-
+"""
 @app.route('/user', methods=['GET'])
 def handle_hello():
 
@@ -44,7 +49,7 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
-
+"""
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
