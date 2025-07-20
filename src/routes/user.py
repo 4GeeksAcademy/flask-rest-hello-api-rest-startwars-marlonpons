@@ -25,17 +25,19 @@ def get_user_by_id(user_id):
 def register():
 
     body = request.get_json()
-        
+    """
     new_user = User(
         email=body["email"],
         password=body["password"],
         is_active=True
         )
-#De esta manera como se hizo en clase Postam me da error
-#new_user = User()
-#new_user_email = body["email"]
-#new_user_password = body["password"]
-#new_user_is_active = True
+    """  
+
+    #De esta manera como se hizo en clase Postam me da error
+    new_user = User()
+    new_user.email = body["email"]
+    new_user.password = body["password"]
+    new_user.is_active = True
 
 
     db.session.add(new_user)

@@ -6,8 +6,8 @@ from database.db import db
 class FavoritePlanet(db.Model):
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    user_id: Mapped[int] = mapped_column(db.ForeignKey('user.id'))
-    planet_id: Mapped[int] = mapped_column(db.ForeignKey('planet.id'))
+    user_id: Mapped[int] = db.Column(db.ForeignKey('user.id'))
+    planet_id: Mapped[int] = db.Column(db.ForeignKey('planet.id'))
 
     user = db.relationship("User", back_populates="favorite_planets")
     planet = db.relationship("Planet", back_populates="favorites")

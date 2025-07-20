@@ -13,9 +13,12 @@ class Planet(db.Model):
     terrain: Mapped[str] = mapped_column(String(100))
 
     residents = db.relationship("People", back_populates="homeworld")
-    planet : Mapped[List["FavoritePlanet"]] = relationship(back_populates="planet")
-    user = db.relationship("User", back_populates="favorite_planets")
-    planet = db.relationship("Planet", back_populates="favorites")
+    #Mas de los mismo
+    #planet : Mapped[List["FavoritePlanet"]] = relationship(back_populates="planet")
+    #Mal la relacion
+    #user = db.relationship("User", back_populates="favorite_planets")
+    #en que estabas pensando
+    #planet = db.relationship("Planet", back_populates="favorites")
     favorites = db.relationship("FavoritePlanet", back_populates="planet")
 
     def serialize(self):
