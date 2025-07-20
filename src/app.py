@@ -9,6 +9,8 @@ from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
 from database.db import db
+from src.routes import favorite_planet
+from src.routes import favorite_character
 import routes.user as api_user
 
 #from models import Person
@@ -30,6 +32,8 @@ setup_admin(app)
 
 # Handle/serialize errors like a JSON object
 app.register_blueprint(api_user.api,url_prefix="/api/user")
+app.register_blueprint(favorite_planet.api, url_prefix="/favorite_planet")
+app.register_blueprint(favorite_character.api, url_prefix="/favorite_character")
 
 
 @app.errorhandler(APIException)

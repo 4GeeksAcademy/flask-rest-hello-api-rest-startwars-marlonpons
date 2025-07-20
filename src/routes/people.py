@@ -3,7 +3,7 @@ from database.db import db
 from models.People import People
 
 api = Blueprint("api/Peoples", __name__)
-
+#listar todos los personajrs
 @api.route("/", methods=["GET"])
 def get_peoples():
     all_peoples = People.query.all()
@@ -11,6 +11,7 @@ def get_peoples():
 
     return jsonify({"all_peoples": all_peoples})
 
+#lo mismo que la anterior pero seleccionando por id
 @api.route("/<people_id>")
 def get_people_by_id(people_id):
     people = People.query.get(people_id)
